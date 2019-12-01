@@ -5,4 +5,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   await app.listen(3000);
 }
-bootstrap();
+
+// tslint:disable-next-line:no-console
+bootstrap().then(() => console.info('Project "her" has started successfully'));
