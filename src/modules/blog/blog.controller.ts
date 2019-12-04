@@ -1,7 +1,8 @@
 import { Post, Delete, Put, Get, Controller, Param, Body, UseGuards, HttpException, HttpStatus } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { BlogService } from './blog.service';
 
-import { SaveDTO } from './blog.dto';
+import { SaveDto } from './dto/save.dto';
 
 @Controller('blog')
 export class BlogController {
@@ -10,7 +11,7 @@ export class BlogController {
   }
 
   @Post()
-  save(@Body() saveDTO: SaveDTO) {
+  save(@Body() saveDTO: SaveDto) {
     return this.blogService.save(saveDTO);
   }
 
@@ -35,6 +36,7 @@ export class BlogController {
   }
 
   @Get(':id')
+  @UseGuards(AuthGuard('jwt'))
   findOne(@Param('id') id) {
     return id;
   }

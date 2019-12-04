@@ -1,7 +1,9 @@
-import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 
+import { AuthModule } from './modules/auth/auth.module';
+import { UserModule } from './modules/user/user.module';
 import { BlogModule } from './modules/blog/blog.module';
 
 @Module({
@@ -16,6 +18,8 @@ import { BlogModule } from './modules/blog/blog.module';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       // synchronize: true,
     }),
+    AuthModule,
+    UserModule,
     BlogModule,
   ],
 })

@@ -4,7 +4,12 @@ WORKDIR /app
 COPY . .
 
 RUN yarn config set registry https://registry.npm.taobao.org/  && \
-    yarn install && \
-    yarn run build
+    yarn add global apidoc && \
+    yarn install --network-timeout 1000000 && \
+    yarn run build  && \
+    apidoc -i src/ -o doc/ && \
+    apt-get install nginx -y && \
+    node dist/main
 
-CMD node dist/main
+COPY nginx.conf /etc/nginx/nginx.conf
+CMD ["nginx", "-g", "daemon off;"]
