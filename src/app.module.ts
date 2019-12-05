@@ -14,7 +14,7 @@ import { BlogModule } from './modules/blog/blog.module';
       port: 3306,
       username: 'root',
       password: '0',
-      database: 'Her',
+      database: 'her',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
