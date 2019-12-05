@@ -9,7 +9,6 @@ import * as rateLimit from 'express-rate-limit';
 import * as bodyParser from 'body-parser';
 import { HttpExceptionFilter } from './filters/http-exception.filter';
 import { ValidationPipe } from './pipes/validation.pipe';
-import { LoggerInterceptor } from './Interceptors/logger.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -22,7 +21,6 @@ async function bootstrap() {
   app.use(rateLimit({ windowMs: 10 * 60 * 1000, max: 100 }));
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalPipes(new ValidationPipe());
-  app.useGlobalInterceptors(new LoggerInterceptor());
   app.useStaticAssets(join(__dirname, '..', 'doc'));
   await app.listen(3000);
 }
