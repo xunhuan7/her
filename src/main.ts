@@ -1,5 +1,7 @@
 import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
+import { join } from 'path';
 
 import * as helmet from 'helmet';
 import * as compression from 'compression';
@@ -10,7 +12,7 @@ import { ValidationPipe } from './pipes/validation.pipe';
 import { LoggerInterceptor } from './Interceptors/logger.interceptor';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.enableCors();
   app.setGlobalPrefix('api/v1');
   app.use(helmet());
@@ -21,6 +23,7 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalInterceptors(new LoggerInterceptor());
+  app.useStaticAssets(join(__dirname, '..', 'doc'));
   await app.listen(3000);
 }
 
