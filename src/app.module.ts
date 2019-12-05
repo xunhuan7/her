@@ -16,7 +16,7 @@ import { BlogModule } from './modules/blog/blog.module';
       password: '0',
       database: 'Her',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      // synchronize: true,
+      synchronize: true,
     }),
     AuthModule,
     UserModule,
