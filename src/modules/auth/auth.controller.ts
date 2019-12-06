@@ -21,7 +21,7 @@ export class AuthController {
    * @apiParam {String} nickname 用户昵称
    * @apiParam {String} [avatar] 用户头像URL
    * @apiParam {String} [profile] 用户主页介绍
-   * @apiParam {String} [roles] 用户权限
+   * @apiParam {String} [roles] 用户角色
    *
    * @apiSuccessExample 返回数据:
    *     HTTP/1.1 200 OK
@@ -31,6 +31,7 @@ export class AuthController {
    *       "avatar": "https://event-img.geekpark.net/uploads/guest/avator/a2dc9530-ff8d-44ee-b91f-3091d0c48c3c/1574394933-L_%E7%BD%97%E6%B0%B8%E6%B5%A9_%E9%94%A4%E5%AD%90%E7%A7%91%E6%8A%80.jpg",
    *       "profile": "I am a programmer",
    *       "roles": "editor",
+   *       "limit": true,
    *       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJ2ZmZmZkAy5ZWlMjIyMi5jb20iLCJpYXQiOjE1NzU1Nzg4NDMsImV4cCI6MTU3NjE4MzY0M30.U_mDsAb3xNGCYZd2zLJkfEAH-6WKT7P1PAKGifCc-YY"
    *     }
    */
@@ -55,6 +56,7 @@ export class AuthController {
    *       "avatar": "https://event-img.geekpark.net/uploads/guest/avator/a2dc9530-ff8d-44ee-b91f-3091d0c48c3c/1574394933-L_%E7%BD%97%E6%B0%B8%E6%B5%A9_%E9%94%A4%E5%AD%90%E7%A7%91%E6%8A%80.jpg",
    *       "profile": "I am a programmer",
    *       "roles": "editor",
+   *       "limit": true,
    *       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJ2ZmZmZkAy5ZWlMjIyMi5jb20iLCJpYXQiOjE1NzU1Nzg4NDMsImV4cCI6MTU3NjE4MzY0M30.U_mDsAb3xNGCYZd2zLJkfEAH-6WKT7P1PAKGifCc-YY"
    *     }
    */
@@ -78,6 +80,7 @@ export class AuthController {
    *       "avatar": "https://event-img.geekpark.net/uploads/guest/avator/a2dc9530-ff8d-44ee-b91f-3091d0c48c3c/1574394933-L_%E7%BD%97%E6%B0%B8%E6%B5%A9_%E9%94%A4%E5%AD%90%E7%A7%91%E6%8A%80.jpg",
    *       "profile": "I am a programmer",
    *       "roles": "editor",
+   *       "limit": true,
    *       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJ2ZmZmZkAy5ZWlMjIyMi5jb20iLCJpYXQiOjE1NzU1Nzg4NDMsImV4cCI6MTU3NjE4MzY0M30.U_mDsAb3xNGCYZd2zLJkfEAH-6WKT7P1PAKGifCc-YY"
    *     }
    */

@@ -42,7 +42,7 @@ export class AuthService {
     if (result.password !== password) {
       throw new UnauthorizedException('Wrong password!');
     }
-    const { id, nickname, avatar, profile, roles } = result;
+    const { id, nickname, avatar, profile, roles, limit } = result;
     const token = this.jwtService.sign({ id, nickname });
     return {
       id,
@@ -51,6 +51,7 @@ export class AuthService {
       avatar,
       profile,
       roles,
+      limit,
       token,
     };
   }
