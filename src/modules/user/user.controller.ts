@@ -2,8 +2,6 @@ import { Controller, Get, Post, Delete, Body, Param, UseGuards } from '@nestjs/c
 import { AuthGuard } from '@nestjs/passport';
 import { UserService } from './user.service';
 
-import { SaveDTO } from './dto/save.dto';
-
 @Controller('user')
 export class UserController {
 
@@ -60,7 +58,7 @@ export class UserController {
    * }]
    */
   @Get()
-  // @UseGuards(AuthGuard())
+  @UseGuards(AuthGuard('jwt'))
   findAll() {
     return this.userService.findAll();
   }

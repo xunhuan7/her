@@ -1,6 +1,7 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
+import * as APP_CONFIG from './app.config';
 
 import { LoggerMiddleware } from './middlewares/logger. middleware';
 
@@ -12,12 +13,11 @@ import { BlogModule } from './modules/blog/blog.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'db',
-      // host: '127.0.0.1',
-      port: 3306,
-      username: 'root',
-      password: '0',
-      database: 'her',
+      host: APP_CONFIG.MYSQL.HOST,
+      port: APP_CONFIG.MYSQL.PORT,
+      username: APP_CONFIG.MYSQL.USERNAME,
+      password: APP_CONFIG.MYSQL.PASSWORD,
+      database: APP_CONFIG.MYSQL.DATABASE,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
