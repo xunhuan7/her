@@ -17,6 +17,19 @@ export class UserService {
     return await this.userRepository.save(registerDTO);
   }
 
+  async updateMe(updateMeDTO, id) {
+    for (const key in updateMeDTO) {
+      if (key !== 'nickname' && key !== 'avatar' && key !== 'profile' && key !== 'password') {
+        delete updateMeDTO[key];
+      }
+    }
+    const me = await this.userRepository.findOne({ id });
+    Object.assign(me, updateMeDTO);
+    const updatedMe = await this.userRepository.save(me);
+    delete updatedMe.password;
+    return updatedMe;
+  }
+
   async active(ids: string[]) {
     const users: User[] = await this.userRepository.findByIds(ids);
     users.map(item => {

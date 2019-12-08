@@ -14,7 +14,7 @@ export class AuthService {
   }
 
   async validateUser(id: string): Promise<any> {
-    const user = await this.userService.findOneByParams({ id});
+    const user = await this.userService.findOneByParams({ id });
     if (!user) {
       throw new UnauthorizedException();
     }
@@ -33,7 +33,7 @@ export class AuthService {
 
   async logIn(loginDTO: LoginDto): Promise<any> {
     const { email, password } = loginDTO;
-    const result = await this.userService.findOneByParams({ email});
+    const result = await this.userService.findOneByParams({ email });
     if (!result) {
       throw new UnauthorizedException('Account does not exist!');
     }
@@ -50,7 +50,7 @@ export class AuthService {
   async me(authorization: string): Promise<any> {
     authorization = (authorization ? authorization : '').split(' ')[1];
     const { id } = this.jwtService.decode(authorization);
-    const { password, ...me } = await this.userService.findOneByParams({id});
+    const { password, ...me } = await this.userService.findOneByParams({ id });
     return me;
   }
 
