@@ -34,7 +34,6 @@ export class AuthService {
   async logIn(loginDTO: LoginDto): Promise<any> {
     const { email, password } = loginDTO;
     const result = await this.userService.findOneByParams({ email});
-    console.log(result)
     if (!result) {
       throw new UnauthorizedException('Account does not exist!');
     }

@@ -9,11 +9,16 @@ export class AdminAuthGuard extends AuthGuard('jwt') {
   }
 
   handleRequest(err, user) {
-    const { role } = user;
+    if (!user) {
+      throw  new UnauthorizedException('Account does not exist!');
+    }
+    const { role, limit } = user;
     if (role !== 'admin') {
-      throw err || new UnauthorizedException('Authority is too low!');
+      throw  new UnauthorizedException('Authority is too low!');
+    }
+    if (limit) {
+      throw  new UnauthorizedException('Account is limited!');
     }
     return user;
   }
-
 }

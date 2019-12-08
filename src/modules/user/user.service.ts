@@ -17,20 +17,53 @@ export class UserService {
     return await this.userRepository.save(registerDTO);
   }
 
-  async deleteAll(): Promise<any> {
-    return await this.userRepository.delete({});
+  async active(ids: string[]) {
+    const users: User[] = await this.userRepository.findByIds(ids);
+    users.map(item => {
+      item.limit = false;
+    });
+    await this.userRepository.save(users);
+    return { ids };
   }
 
-  async deleteOne(id): Promise<any> {
-    return await this.userRepository.delete({ id });
+  async forbidden(ids: string[]) {
+    const users: User[] = await this.userRepository.findByIds(ids);
+    users.map(item => {
+      item.limit = true;
+    });
+    await this.userRepository.save(users);
+    return { ids };
   }
 
-  async findAll(): Promise<User[]> {
-    return await this.userRepository.find();
+  async findUsers(findUsersDTO): Promise<any> {
+    const { page, pageSize } = findUsersDTO;
+    const totalCount = await this.userRepository.count();
+    const users = await this.userRepository.find(
+      {
+        order: {
+          id: 'ASC',
+        },
+        skip: (page - 1) * pageSize,
+        take: pageSize,
+      },
+    );
+    users.map(item => delete item.password);
+    return {
+      totalCount,
+      page,
+      pageSize,
+      data: users,
+    };
   }
 
-  async findOneByParams(params): Promise<any> {
-    return await this.userRepository.findOne({ ...params });
+  async findOneByParams(params, needId: boolean = true): Promise<any> {
+    if (needId) {
+      return await this.userRepository.findOne({ ...params });
+    } else {
+      const user = await this.userRepository.findOne({ ...params });
+      delete user.password;
+      return user;
+    }
   }
 
 }

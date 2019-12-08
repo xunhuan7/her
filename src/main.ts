@@ -17,7 +17,7 @@ async function bootstrap() {
   app.use(compression());
   app.use(bodyParser.json({ limit: '100kb' }));
   app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(rateLimit({ windowMs: 60 * 1000, max: 60 }));
+  app.use(rateLimit({ windowMs: 60 * 1000, max: 200 }));
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalPipes(new ValidationPipe());
   app.useStaticAssets(join(__dirname, '..', 'doc'));
