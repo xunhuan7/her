@@ -1,5 +1,5 @@
 import { Post, Delete, Put, Get, Controller, Param, Body, UseGuards, HttpException, HttpStatus } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import { EditorAuthGuard } from '../../guards/editor-auth.guard';
 import { BlogService } from './blog.service';
 
 import { SaveDto } from './dto/save.dto';
@@ -36,7 +36,7 @@ export class BlogController {
   }
 
   @Get(':id')
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(EditorAuthGuard)
   findOne(@Param('id') id) {
     return id;
   }

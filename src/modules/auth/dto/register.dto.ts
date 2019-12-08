@@ -20,5 +20,5 @@ export class RegisterDTO {
 
   profile: string;
 
-  roles: 'admin' | 'editor' | 'ghost';
+  role: 'admin' | 'editor' | 'ghost';
 }

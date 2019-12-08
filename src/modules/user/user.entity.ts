@@ -29,7 +29,7 @@ export class User extends BaseEntity {
     enum: ['admin', 'editor', 'ghost'],
     default: ['editor'],
   })
-  roles: UserRoleType;
+  role: UserRoleType;
 
   @Column({ default: true })
   limit: boolean;
