@@ -49,8 +49,8 @@ export class AuthService {
 
   async me(authorization: string): Promise<any> {
     authorization = (authorization || '').split(' ')[1];
-    const { id } = this.jwtService.decode(authorization);
-    const { password, ...myInfo } = await this.userService.findOneByParams({ id });
+    const id = this.jwtService.decode(authorization);
+    const { password, ...myInfo } = await this.userService.findOneByParams(id);
     return myInfo;
   }
 

@@ -372,7 +372,7 @@
     object-hash "2.0.0"
     uuid "3.3.3"
 
-"@nestjs/jwt@^6.1.1":
+"@nestjs/jwt@^6.10.8":
   version "6.1.1"
   resolved "https://registry.npm.taobao.org/@nestjs/jwt/download/@nestjs/jwt-6.1.1.tgz#78883321fc8663a7cf32aa725a70adc8454bbf5d"
   integrity sha1-eIgzIfyGY6fPMqpyWnCtyEVLv10=

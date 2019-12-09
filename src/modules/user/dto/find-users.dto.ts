@@ -4,4 +4,5 @@ export class FindUsersDTO {
 
   pageSize: string;
 
+  role: 'admin' | 'editor' | 'ghost';
 }

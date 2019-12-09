@@ -82,8 +82,9 @@ export class UserController {
    * @api {get} /user 获取用户列表数据
    * @apiGroup UserModule
    *
-   * @apiParam {Number} [page] 第几页
-   * @apiParam {Number} [pageSize] 每页数量
+   * @apiParam {String} [page] 第几页
+   * @apiParam {String} [pageSize] 每页数量
+   * @apiParam {String} [role] 用户角色：'admin' | 'editor' | 'ghost'
    *
    * @apiSuccessExample 返回数据:
    *     HTTP/1.1 200 OK
