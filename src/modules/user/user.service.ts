@@ -49,17 +49,17 @@ export class UserService {
   }
 
   async findUsers(findUsersDTO): Promise<any> {
-    const { page, pageSize } = findUsersDTO;
-    const totalCount = await this.userRepository.count();
-    const users = await this.userRepository.find(
-      {
-        order: {
-          id: 'ASC',
-        },
-        skip: (page - 1) * pageSize,
-        take: pageSize,
-      },
-    );
+    const { page, pageSize, role } = findUsersDTO;
+    const totalCount = await this.userRepository.count({role});
+    const options = role ? {
+      skip: (page - 1) * pageSize,
+      take: pageSize,
+      where: { role },
+    } : {
+      skip: (page - 1) * pageSize,
+      take: pageSize,
+    };
+    const users = await this.userRepository.find(options);
     users.map(item => delete item.password);
     return {
       totalCount,
